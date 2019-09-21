@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+mkdir -p tmp/
+curl http://ftp.monash.edu/pub/nihongo/JMdict_e -o tmp/jmdict.xml
