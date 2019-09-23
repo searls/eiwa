@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "eiwa"
+
+result = Eiwa.parse_file("tmp/jmdict.xml", type: :jmdict_e)
+
+puts "Cool. #{result.size} words"
