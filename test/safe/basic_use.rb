@@ -1,7 +1,7 @@
 class BasicUse < Minitest::Test
   def test_basic_use_with_block
     entries = []
-    result = Eiwa.parse_file("test/fixture/1.xml") { |entry|
+    result = Eiwa.parse_file("test/fixture/1.xml", type: :jmdict_e) { |entry|
       entries << entry
     }
 
@@ -18,7 +18,8 @@ class BasicUse < Minitest::Test
     assert_equal "おかし", okashi.readings[0].text
     assert_equal [:ichi1], okashi.readings[0].frequency_tags
     assert_equal 1, okashi.meanings.size
-    assert_equal [:noun], okashi.meanings[0].parts_of_speech
+    assert_equal 1, okashi.meanings[0].parts_of_speech.size
+    assert_equal "n", okashi.meanings[0].parts_of_speech[0].code
     assert_equal ["confections", "sweets", "candy"], okashi.meanings[0].definitions
   end
 end
