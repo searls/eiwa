@@ -70,6 +70,8 @@ module Eiwa
       if (matches = msg.match(/Entity '([\S]+)' not defined/))
         # See: http://github.com/sparklemotion/nokogiri/issues/1926
         @current.entity = @translates_code_to_entity.call(matches[1])
+      elsif msg == "Detected an entity reference loop\n"
+        # Do nothing and hope this does not matter.
       else
         raise Eiwa::Error.new("Parsing error: #{msg}")
       end
