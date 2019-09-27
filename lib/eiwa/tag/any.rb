@@ -5,7 +5,7 @@ module Eiwa
 
       def start(tag_name, attrs, parent)
         @tag_name = tag_name
-        @attrs = attrs
+        @attrs = Hash[attrs]
         @parent = parent
       end
 

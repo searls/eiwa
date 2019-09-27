@@ -3,9 +3,13 @@ require_relative "tag/spelling"
 require_relative "tag/reading"
 require_relative "tag/meaning"
 require_relative "tag/entity"
+require_relative "tag/cross_reference"
+require_relative "tag/antonym"
+require_relative "tag/source_language"
+require_relative "tag/definition"
 require_relative "tag/other"
 
-require_relative "translates_code_to_entity"
+require_relative "jmdict_entities"
 
 module Eiwa
   TAGS = {
@@ -19,20 +23,21 @@ module Eiwa
     "field" => Tag::Entity,
     "ke_inf" => Tag::Entity,
     "re_inf" => Tag::Entity,
+    "xref" => Tag::CrossReference,
+    "ant" => Tag::Antonym,
+    "lsource" => Tag::SourceLanguage,
+    "gloss" => Tag::Definition,
   }
 
   class JmdictDoc < Nokogiri::XML::SAX::Document
     def initialize(each_entry_block)
       @each_entry_block = each_entry_block
-      @translates_code_to_entity = TranslatesCodeToEntity.new
     end
 
     def start_document
-      @entries = []
     end
 
     def end_document
-      @finished = true
     end
 
     def start_element(name, attrs)
@@ -42,12 +47,11 @@ module Eiwa
     end
 
     def end_element(name)
-      raise "wtf" if @current.tag_name != name
+      raise Eiwa::Error.new("Parsing error. Expected <#{@current.tag_name}> to close before <#{name}>") if @current.tag_name != name
       ending = @current
       ending.end_self
       if ending.is_a?(Tag::Entry)
         @each_entry_block&.call(ending)
-        @entries << ending
       end
 
       @current = ending.parent
@@ -69,7 +73,8 @@ module Eiwa
     def error(msg)
       if (matches = msg.match(/Entity '([\S]+)' not defined/))
         # See: http://github.com/sparklemotion/nokogiri/issues/1926
-        @current.entity = @translates_code_to_entity.call(matches[1])
+        code = matches[1]
+        @current.set_entity(code, JMDICT_ENTITIES[code])
       elsif msg == "Detected an entity reference loop\n"
         # Do nothing and hope this does not matter.
       else
@@ -84,10 +89,5 @@ module Eiwa
     # def processing_instruction name, content
     #   puts "processing_instruction #{name}, #{content}"
     # end
-
-    def result
-      raise Eiwa::Error.new("Parsing is not complete") unless @finished
-      @entries
-    end
   end
 end

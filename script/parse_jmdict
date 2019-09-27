@@ -4,6 +4,9 @@ lib = File.expand_path("../../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "eiwa"
 
-result = Eiwa.parse_file("tmp/jmdict.xml", type: :jmdict_e)
+count = 0
+Eiwa.parse_file("tmp/jmdict.xml", type: :jmdict_e) do |entry|
+  count += 1
+end
 
-puts "Cool. #{result.size} words"
+puts "Cool. #{count} words"

@@ -24,6 +24,7 @@ module Eiwa
         when "r_ele"
           @readings << child
         when "sense"
+          child.trickle_down(@meanings.last) unless @meanings.last.nil?
           @meanings << child
         end
       end
