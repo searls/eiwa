@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Justin Searls"]
   spec.email = ["searls@gmail.com"]
 
-  spec.summary = "Parses the JMDict dictionary"
+  spec.summary = "Parses the JMDict Japanese-English dictionary"
   spec.homepage = "https://github.com/searls/eiwa"
   spec.license = "MIT"
 
