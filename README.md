@@ -74,4 +74,6 @@ entries = Eiwa.parse_file("path/to/some.xml", type: :jmdict_e)
 Note that for the abridged Japanese-English dictionary, this will consume about
 500MB of RAM.
 
+### The entry object model
 
+I haven't documented the [Entry](https://github.com/searls/eiwa/blob/master/lib/eiwa/tag/entry.rb) type or its child types yet, but they should be pretty easy to piece together by inspecting the output and [checking the source listings](https://github.com/searls/eiwa/blob/master/lib/eiwa/tag).
