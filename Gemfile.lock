@@ -22,7 +22,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     rainbow (3.0.0)
-    rake (10.5.0)
+    rake (13.0.1)
     rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -46,7 +46,7 @@ DEPENDENCIES
   eiwa!
   minitest (~> 5.0)
   pry
-  rake (~> 10.0)
+  rake (~> 13.0)
   standard
 
 BUNDLED WITH
