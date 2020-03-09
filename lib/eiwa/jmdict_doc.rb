@@ -26,7 +26,7 @@ module Eiwa
     "xref" => Tag::CrossReference,
     "ant" => Tag::Antonym,
     "lsource" => Tag::SourceLanguage,
-    "gloss" => Tag::Definition,
+    "gloss" => Tag::Definition
   }
 
   class JmdictDoc < Nokogiri::XML::SAX::Document

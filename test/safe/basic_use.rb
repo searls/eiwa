@@ -30,7 +30,7 @@ class BasicUse < Minitest::Test
     assert_equal [
       gloss(text: "confections"),
       gloss(text: "sweets"),
-      gloss(text: "candy"),
+      gloss(text: "candy")
     ], okashi.meanings[0].definitions
   end
 
@@ -49,12 +49,12 @@ class BasicUse < Minitest::Test
     assert_equal "あからさま", entry.readings[0].text
     assert_equal 1, entry.meanings.size
     assert_equal [
-      entity("adj-na"), entity("adj-no"),
+      entity("adj-na"), entity("adj-no")
     ], entry.meanings[0].parts_of_speech
     assert_equal [entity("uk")], entry.meanings[0].misc_tags
     assert_equal [
       "plain", "frank", "candid", "open", "direct", "straightforward",
-      "unabashed", "blatant", "flagrant",
+      "unabashed", "blatant", "flagrant"
     ].map { |t| gloss(text: t) }, entry.meanings[0].definitions
   end
 
@@ -71,17 +71,17 @@ class BasicUse < Minitest::Test
     assert_equal [gloss(text: "sweat")], entry.meanings[0].definitions
     assert_equal [entity("n")], entry.meanings[0].parts_of_speech
     assert_equal [
-      xref(text: "汗", sense_ordinal: 1),
+      xref(text: "汗", sense_ordinal: 1)
     ], entry.meanings[0].cross_references
     assert_equal [], entry.meanings[0].misc_tags
     assert_equal [
       gloss(text: "sweatshirt"),
-      gloss(text: "sweatpants"),
+      gloss(text: "sweatpants")
     ], entry.meanings[1].definitions
     assert_equal [entity("n")], entry.meanings[1].parts_of_speech
     assert_equal [
       xref(text: "スウェットシャツ"),
-      xref(text: "スウェットパンツ"),
+      xref(text: "スウェットパンツ")
     ], entry.meanings[1].cross_references
     assert_equal [entity("abbr")], entry.meanings[1].misc_tags
 
@@ -118,7 +118,7 @@ class BasicUse < Minitest::Test
     assert_equal "個食", entry.text
     assert_equal 3, entry.meanings.size
     assert_equal [
-      gloss(text: "food sold in single servings"),
+      gloss(text: "food sold in single servings")
     ], entry.meanings[2].definitions
     assert_equal ["個食", "こ食"], entry.meanings[2].restricted_to_spellings
   end
@@ -129,7 +129,7 @@ class BasicUse < Minitest::Test
     assert_equal "彼の", entry.text
     assert_equal 1, entry.meanings.size
     assert_equal [
-      gloss(text: "that (someone or something distant from both speaker and listener, or situation unfamiliar to both speaker and listener)"),
+      gloss(text: "that (someone or something distant from both speaker and listener, or situation unfamiliar to both speaker and listener)")
     ], entry.meanings[0].definitions
     assert_equal [entity("adj-pn")], entry.meanings[0].parts_of_speech
     assert_equal [entity("uk")], entry.meanings[0].misc_tags
@@ -137,7 +137,7 @@ class BasicUse < Minitest::Test
       xref(text: "何の", reading: "どの"),
       xref(text: "此の", sense_ordinal: 1),
       xref(text: "其の", sense_ordinal: 1),
-      xref(text: "彼", reading: "あれ", sense_ordinal: 1),
+      xref(text: "彼", reading: "あれ", sense_ordinal: 1)
     ], entry.meanings[0].cross_references
   end
 
@@ -147,7 +147,7 @@ class BasicUse < Minitest::Test
     assert_equal "アンマウント", entry.text
     assert_equal 1, entry.meanings.size
     assert_equal [
-      gloss(text: "unmounting (e.g. a drive)"),
+      gloss(text: "unmounting (e.g. a drive)")
     ], entry.meanings[0].definitions
     assert_equal [entity("n"), entity("vs")], entry.meanings[0].parts_of_speech
     assert_equal [ant(text: "マウント")], entry.meanings[0].antonyms
@@ -181,7 +181,7 @@ class BasicUse < Minitest::Test
     assert_equal "コンビナートキャンペーン", entry.text
     assert_equal [
       lsource(text: "kombinat", language: "rus", type: "part"),
-      lsource(text: "campaign", language: "eng", type: "part"),
+      lsource(text: "campaign", language: "eng", type: "part")
     ], entry.meanings[0].source_languages
   end
 
@@ -200,7 +200,7 @@ class BasicUse < Minitest::Test
     assert_equal [
       gloss(text: "child mascots"),
       gloss(text: "player escorts"),
-      gloss(text: "children who accompany soccer players entering the pitch", type: "expl"),
+      gloss(text: "children who accompany soccer players entering the pitch", type: "expl")
     ], entry.meanings[0].definitions
     assert entry.meanings[0].definitions[2].explanation?
   end
