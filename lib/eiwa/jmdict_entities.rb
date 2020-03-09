@@ -23,6 +23,7 @@ module Eiwa
     "col" => "colloquialism",
     "comp" => "computer terminology",
     "conj" => "conjunction",
+    "cop" => "copula",
     "cop-da" => "copula",
     "ctr" => "counter",
     "derog" => "derogatory",
@@ -172,6 +173,6 @@ module Eiwa
     "sumo" => "sumo term",
     "zool" => "zoology term",
     "joc" => "jocular, humorous term",
-    "anat" => "anatomical term",
+    "anat" => "anatomical term"
   }
 end
