@@ -212,18 +212,18 @@ class BasicUse < Minitest::Test
   end
 
   def xref(options)
-    Eiwa::Tag::CrossReference.new(options)
+    Eiwa::Tag::CrossReference.new(**options)
   end
 
   def ant(options)
-    Eiwa::Tag::Antonym.new(options)
+    Eiwa::Tag::Antonym.new(**options)
   end
 
   def lsource(options)
-    Eiwa::Tag::SourceLanguage.new(options)
+    Eiwa::Tag::SourceLanguage.new(**options)
   end
 
   def gloss(options)
-    Eiwa::Tag::Definition.new(options)
+    Eiwa::Tag::Definition.new(**options)
   end
 end

@@ -32,6 +32,7 @@ module Eiwa
   class JmdictDoc < Nokogiri::XML::SAX::Document
     def initialize(each_entry_block)
       @each_entry_block = each_entry_block
+      @current = nil
     end
 
     def start_document
@@ -71,7 +72,7 @@ module Eiwa
     # end
 
     def error(msg)
-      if (matches = msg.match(/Entity '([\S]+)' not defined/))
+      if (matches = msg.match(/Entity '(\S+)' not defined/))
         # See: http://github.com/sparklemotion/nokogiri/issues/1926
         code = matches[1]
         @current.set_entity(code, JMDICT_ENTITIES[code])

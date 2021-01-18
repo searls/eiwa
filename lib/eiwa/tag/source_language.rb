@@ -23,7 +23,7 @@ module Eiwa
           @wasei == other.wasei &&
           @type == other.type
       end
-      alias == eql?
+      alias_method :==, :eql?
 
       def hash
         @text.hash + @language.hash + @wasei.hash + @type.hash

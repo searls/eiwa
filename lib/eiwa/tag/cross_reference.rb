@@ -21,7 +21,7 @@ module Eiwa
           @reading == other.reading &&
           @sense_ordinal == other.sense_ordinal
       end
-      alias == eql?
+      alias_method :==, :eql?
 
       def hash
         @text.hash + @reading.hash + @sense_ordinal.hash
