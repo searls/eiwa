@@ -23,11 +23,12 @@ gem 'eiwa'
 
 Get your hands on a supported dictionary. Right now eiwa only parses
 [JMDict](http://www.edrdg.org/jmdict/j_jmdict.html), which can be fetched from
-the [Monash ftp site](http://ftp.monash.edu/pub/nihongo/00INDEX.html) or with a
+the [EDRDG ftp site](http://ftp.edrdg.org/pub/Nihongo/00INDEX.html) or with a
 script like this, for the Japanese-English export:
 
 ```bash
-curl http://ftp.monash.edu/pub/nihongo/JMdict_e -o jmdict.xml
+$ curl http://ftp.edrdg.org/pub/Nihongo/JMdict_e.gz -o jmdict.xml.gz"
+$ gunzip jmdict.xml.gz # which will output an uncompress jmdict.xml file
 ```
 
 This file is updated daily, and is essentially an export of all vocabulary on
