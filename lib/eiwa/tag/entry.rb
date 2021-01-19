@@ -1,5 +1,3 @@
-require_relative "any"
-
 module Eiwa
   module Tag
     class Entry < Any

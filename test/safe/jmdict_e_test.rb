@@ -1,8 +1,10 @@
-class BasicUse < Minitest::Test
+require "test_helper"
+
+class JmdictETest < Minitest::Test
   def test_blockless_returns_array_and_blockfull_returns_nil
-    result = Eiwa.parse_file("test/fixture/1.xml")
+    result = Eiwa.parse_file("test/fixture/jmdict_e.xml")
     block_entries = []
-    will_be_nil = Eiwa.parse_file("test/fixture/1.xml") { |e|
+    will_be_nil = Eiwa.parse_file("test/fixture/jmdict_e.xml") { |e|
       block_entries << e
     }
 
@@ -11,7 +13,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_the_first_word
-    entries = Eiwa.parse_file("test/fixture/1.xml", type: :jmdict_e)
+    entries = Eiwa.parse_file("test/fixture/jmdict_e.xml", type: :jmdict_e)
 
     okashi = entries[0]
     assert_equal 1001710, okashi.id
@@ -35,7 +37,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_word_with_ke_inf_and_misc_tags
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1000225 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1000225 }
 
     assert_equal "明白", entry.text
     assert_equal 3, entry.spellings.size
@@ -59,7 +61,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_word_with_no_kanji_but_xref_and_pos_and_misc_trickle_down_and_stagr
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1067460 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1067460 }
 
     assert_equal "スウェット", entry.text
     assert_empty entry.spellings
@@ -92,7 +94,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_nokanji
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1001170 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1001170 }
 
     assert_equal "斉魚", entry.text
     assert_equal 2, entry.readings.size
@@ -103,7 +105,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_re_inf
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 2840838 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 2840838 }
 
     assert_equal "黄牛", entry.text
     assert_equal 2, entry.readings.size
@@ -113,7 +115,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_stagk
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 2827931 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 2827931 }
 
     assert_equal "個食", entry.text
     assert_equal 3, entry.meanings.size
@@ -124,7 +126,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_xref_edge_cases
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1000420 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1000420 }
 
     assert_equal "彼の", entry.text
     assert_equal 1, entry.meanings.size
@@ -142,7 +144,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_antonyms
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1020710 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1020710 }
 
     assert_equal "アンマウント", entry.text
     assert_equal 1, entry.meanings.size
@@ -155,28 +157,28 @@ class BasicUse < Minitest::Test
   end
 
   def test_antonym_with_sense_restriction
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1014630 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1014630 }
 
     assert_equal "アウター", entry.text
     assert_equal [ant(text: "インナー", sense_ordinal: 1)], entry.meanings[0].antonyms
   end
 
   def test_lsource
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1014660 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1014660 }
 
     assert_equal "アウタルキー", entry.text
     assert_equal [lsource(text: "Autarkie", language: "ger")], entry.meanings[0].source_languages
   end
 
   def test_lsource_wasei
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1014670 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1014670 }
 
     assert_equal "アウテリア", entry.text
     assert_equal [lsource(text: "outerior", wasei: true)], entry.meanings[0].source_languages
   end
 
   def test_lsource_type
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1053260 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1053260 }
 
     assert_equal "コンビナートキャンペーン", entry.text
     assert_equal [
@@ -186,7 +188,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_dialect_and_s_inf
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 1122910 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1122910 }
 
     assert_equal "ホルモン", entry.text
     assert_equal [entity("ksb")], entry.meanings[1].dialects
@@ -194,7 +196,7 @@ class BasicUse < Minitest::Test
   end
 
   def test_gloss_g_type
-    entry = Eiwa.parse_file("test/fixture/1.xml").find { |e| e.id == 2841394 }
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 2841394 }
 
     assert_equal "エスコートキッズ", entry.text
     assert_equal [
@@ -208,7 +210,7 @@ class BasicUse < Minitest::Test
   private
 
   def entity(code)
-    Eiwa::Tag::Entity.new(code: code, text: Eiwa::JMDICT_ENTITIES[code])
+    Eiwa::Tag::Entity.new(code: code, text: Eiwa::Jmdict::ENTITIES[code])
   end
 
   def xref(options)

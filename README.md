@@ -1,7 +1,12 @@
 # eiwa / 英和
 
-Parses the Japanese-English version of JMDict, a daily export of the WWWJDIC
-online Japanese dictionary.
+Parses two types of Japanese-English dictionaries:
+
+* `:jmdict_e` - [JMDict](http://www.edrdg.org/jmdict/edict_doc.html)'s
+  English-only export of the WWWJDIC online Japanese dictionary.
+* `:kanjidic2` - the
+  [KANJIDIC2](http://www.edrdg.org/wiki/index.php/KANJIDIC_Project) dictionary
+  of roughly 13,000 kanji characters
 
 ## Usage
 
@@ -27,12 +32,20 @@ the [EDRDG ftp site](http://ftp.edrdg.org/pub/Nihongo/00INDEX.html) or with a
 script like this, for the Japanese-English export:
 
 ```bash
+# Download JMDICT-E:
 $ curl http://ftp.edrdg.org/pub/Nihongo/JMdict_e.gz -o jmdict.xml.gz"
-$ gunzip jmdict.xml.gz # which will output an uncompress jmdict.xml file
+# Unzip to jmdict.xml
+$ gunzip jmdict.xml.gz
+
+# Download KANJIDIC2:
+$ curl http://www.edrdg.org/kanjidic/kanjidic2.xml.gz -o kanjidic2.xml.gz
+# Unzip to kanjidic2.xml
+$ gunzip kanjidic2.xml.gz
 ```
 
-This file is updated daily, and is essentially an export of all vocabulary on
-the [WWWJDIC application](http://nihongo.monash.edu/cgi-bin/wwwjdic?1C)
+These files are updated daily, and are essentially an export of all vocabulary
+and kanji in the [WWWJDIC
+application](http://nihongo.monash.edu/cgi-bin/wwwjdic?1C)
 
 ### Parse the dictionary
 
@@ -45,13 +58,11 @@ array and one that will invoke a provided block with each entry, but which won't
 retain a reference to the entries, allowing Ruby to garbage collect them as it
 goes.
 
-Parsing the dictionary is CPU intensive, and takes about 13 seconds on my 2019
-13" MacBook Pro.
-
 #### Passing a block
 
 If you just want to do some processing on each entry, it probably makes sense to
-invoke the library by passing a block
+invoke the library by passing a block (note that supported types include only
+`:jmdict_e` and `:kanjidic2`)
 
 ```ruby
 Eiwa.parse_file("path/to/some.xml", type: :jmdict_e) do |entry|
@@ -75,6 +86,3 @@ entries = Eiwa.parse_file("path/to/some.xml", type: :jmdict_e)
 Note that for the abridged Japanese-English dictionary, this will consume about
 500MB of RAM.
 
-### The entry object model
-
-I haven't documented the [Entry](https://github.com/searls/eiwa/blob/master/lib/eiwa/tag/entry.rb) type or its child types yet, but they should be pretty easy to piece together by inspecting the output and [checking the source listings](https://github.com/searls/eiwa/blob/master/lib/eiwa/tag).
