@@ -205,6 +205,31 @@ class JmdictETest < Minitest::Test
     assert entry.meanings[0].definitions[2].explanation?
   end
 
+  def test_misc_tag_regression
+    entry = Eiwa.parse_file("test/fixture/jmdict_e.xml").find { |e| e.id == 1224880 }
+
+    assert_equal "宜しい", entry.text
+    assert_equal 1, entry.spellings.size
+    assert_equal "宜しい", entry.spellings[0].text
+    assert_equal 1, entry.readings.size
+    assert_equal "よろしい", entry.readings[0].text
+    assert_equal 1, entry.meanings.size
+    assert_equal [
+      entity("adj-i")
+    ], entry.meanings[0].parts_of_speech
+    assert_equal [entity("uk"), entity("hon")], entry.meanings[0].misc_tags
+    assert_equal [
+      "good",
+      "OK",
+      "all right",
+      "fine",
+      "very well",
+      "will do",
+      "may",
+      "can"
+    ].map { |t| gloss(text: t) }, entry.meanings[0].definitions
+  end
+
   private
 
   def entity(code)

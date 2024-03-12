@@ -873,4 +873,28 @@ various information fields.
 <gloss g_type="expl">children who accompany soccer players entering the pitch</gloss>
 </sense>
 </entry>
+<entry>
+<ent_seq>1224880</ent_seq>
+<k_ele>
+<keb>宜しい</keb>
+<ke_pri>ichi1</ke_pri>
+</k_ele>
+<r_ele>
+<reb>よろしい</reb>
+<re_pri>ichi1</re_pri>
+</r_ele>
+<sense>
+<pos>&adj-i;</pos>
+<misc>&uk;</misc>
+<misc>&hon;</misc>
+<gloss>good</gloss>
+<gloss>OK</gloss>
+<gloss>all right</gloss>
+<gloss>fine</gloss>
+<gloss>very well</gloss>
+<gloss>will do</gloss>
+<gloss>may</gloss>
+<gloss>can</gloss>
+</sense>
+</entry>
 </JMdict>
