@@ -32,7 +32,8 @@ class JmdictETest < Minitest::Test
     assert_equal [
       gloss(text: "confections"),
       gloss(text: "sweets"),
-      gloss(text: "candy")
+      gloss(text: "candy"),
+      gloss(text: "cake")
     ], okashi.meanings[0].definitions
   end
 
@@ -42,11 +43,11 @@ class JmdictETest < Minitest::Test
     assert_equal "明白", entry.text
     assert_equal 3, entry.spellings.size
     assert_equal "明白", entry.spellings[0].text
-    assert_equal [entity("ateji")], entry.spellings[0].info_tags
+    assert_equal [entity("ateji"), entity("rK")], entry.spellings[0].info_tags
     assert_equal "偸閑", entry.spellings[1].text
-    assert_equal [entity("ateji")], entry.spellings[1].info_tags
+    assert_equal [entity("ateji"), entity("rK")], entry.spellings[1].info_tags
     assert_equal "白地", entry.spellings[2].text
-    assert_equal [entity("ateji")], entry.spellings[2].info_tags
+    assert_equal [entity("ateji"), entity("rK")], entry.spellings[2].info_tags
     assert_equal 1, entry.readings.size
     assert_equal "あからさま", entry.readings[0].text
     assert_equal 1, entry.meanings.size
@@ -69,28 +70,24 @@ class JmdictETest < Minitest::Test
     assert_equal "スウェット", entry.readings[0].text
     assert_equal "スエット", entry.readings[1].text
     assert_equal "スェット", entry.readings[2].text
-    assert_equal 3, entry.meanings.size
-    assert_equal [gloss(text: "sweat")], entry.meanings[0].definitions
-    assert_equal [entity("n")], entry.meanings[0].parts_of_speech
+    assert_equal 2, entry.meanings.size
+    assert_equal [gloss(text: "sweat")], entry.meanings[1].definitions
+    assert_equal [entity("n")], entry.meanings[1].parts_of_speech
     assert_equal [
       xref(text: "汗", sense_ordinal: 1)
-    ], entry.meanings[0].cross_references
-    assert_equal [], entry.meanings[0].misc_tags
+    ], entry.meanings[1].cross_references
+    assert_equal [], entry.meanings[1].misc_tags
     assert_equal [
       gloss(text: "sweatshirt"),
-      gloss(text: "sweatpants")
-    ], entry.meanings[1].definitions
-    assert_equal [entity("n")], entry.meanings[1].parts_of_speech
+      gloss(text: "sweatpants"),
+      gloss(text: "sweats"),
+      gloss(text: "stretchy, absorbent fabric (used in sweatshirts and sweatpants)")
+    ], entry.meanings[0].definitions
+    assert_equal [entity("n")], entry.meanings[0].parts_of_speech
     assert_equal [
       xref(text: "スウェットシャツ"),
       xref(text: "スウェットパンツ")
-    ], entry.meanings[1].cross_references
-    assert_equal [entity("abbr")], entry.meanings[1].misc_tags
-
-    assert_equal [gloss(text: "suet")], entry.meanings[2].definitions
-    assert_equal ["スエット"], entry.meanings[2].restricted_to_readings
-    assert_equal [entity("n")], entry.meanings[2].parts_of_speech
-    assert_equal [entity("abbr")], entry.meanings[2].misc_tags
+    ], entry.meanings[0].cross_references
   end
 
   def test_nokanji
@@ -131,15 +128,16 @@ class JmdictETest < Minitest::Test
     assert_equal "彼の", entry.text
     assert_equal 1, entry.meanings.size
     assert_equal [
-      gloss(text: "that (someone or something distant from both speaker and listener, or situation unfamiliar to both speaker and listener)")
+      gloss(text: "that"),
+      gloss(text: "those"),
+      gloss(text: "the")
     ], entry.meanings[0].definitions
     assert_equal [entity("adj-pn")], entry.meanings[0].parts_of_speech
     assert_equal [entity("uk")], entry.meanings[0].misc_tags
     assert_equal [
-      xref(text: "何の", reading: "どの"),
-      xref(text: "此の", sense_ordinal: 1),
-      xref(text: "其の", sense_ordinal: 1),
-      xref(text: "彼", reading: "あれ", sense_ordinal: 1)
+      xref(text: "どの"),
+      xref(text: "この", sense_ordinal: 1),
+      xref(text: "その", sense_ordinal: 1)
     ], entry.meanings[0].cross_references
   end
 
@@ -152,7 +150,7 @@ class JmdictETest < Minitest::Test
       gloss(text: "unmounting (e.g. a drive)")
     ], entry.meanings[0].definitions
     assert_equal [entity("n"), entity("vs")], entry.meanings[0].parts_of_speech
-    assert_equal [ant(text: "マウント")], entry.meanings[0].antonyms
+    assert_equal [ant(text: "マウント", sense_ordinal: 3)], entry.meanings[0].antonyms
     assert_equal [entity("comp")], entry.meanings[0].fields
   end
 
