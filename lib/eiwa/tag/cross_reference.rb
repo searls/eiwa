@@ -12,7 +12,7 @@ module Eiwa
       def end_self
         parts = @characters.split("・")
         @text = parts.first
-        @reading = parts[1..-1].find { |part| /[^0-9]/.match(part) }
+        @reading = parts[1..].find { |part| /[^0-9]/.match(part) }
         @sense_ordinal = parts.find { |part| /^[0-9]+$/.match(part) }&.to_i
       end
 
@@ -24,7 +24,7 @@ module Eiwa
       alias_method :==, :eql?
 
       def hash
-        @text.hash + @reading.hash + @sense_ordinal.hash
+        [@text, @reading, @sense_ordinal].hash
       end
     end
   end

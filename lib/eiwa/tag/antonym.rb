@@ -21,7 +21,7 @@ module Eiwa
       alias_method :==, :eql?
 
       def hash
-        @text.hash + @sense_ordinal.hash
+        [@text, @sense_ordinal].hash
       end
     end
   end

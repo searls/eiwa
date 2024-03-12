@@ -20,7 +20,7 @@ module Eiwa
       alias_method :==, :eql?
 
       def hash
-        @code.hash + @text.hash
+        [@code, @text].hash
       end
     end
   end
