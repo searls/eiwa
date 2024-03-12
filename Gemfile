@@ -7,3 +7,4 @@ gemspec
 gem "standard"
 gem "minitest"
 gem "rake"
+gem "m"
