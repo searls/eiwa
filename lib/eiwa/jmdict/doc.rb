@@ -53,6 +53,10 @@ module Eiwa
         @current.add_characters(s)
       end
 
+      def reference(name, content)
+        @current.set_entity(name, content)
+      end
+
       # def comment string
       #   puts "comment #{string}"
       # end
@@ -62,6 +66,7 @@ module Eiwa
       # end
 
       def error(msg)
+        # TODO: This logic can be removed once we pin to Nokogiri >= 1.17.0
         if (matches = msg.match(/Entity '(\S+)' not defined/))
           # See: http://github.com/sparklemotion/nokogiri/issues/1926
           code = matches[1]
