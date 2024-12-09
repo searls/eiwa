@@ -66,16 +66,7 @@ module Eiwa
       # end
 
       def error(msg)
-        # TODO: This logic can be removed once we pin to Nokogiri >= 1.17.0
-        if (matches = msg.match(/Entity '(\S+)' not defined/))
-          # See: http://github.com/sparklemotion/nokogiri/issues/1926
-          code = matches[1]
-          @current.set_entity(code, ENTITIES[code])
-        elsif msg == "Detected an entity reference loop\n"
-          # Do nothing and hope this does not matter.
-        else
-          raise Eiwa::Error.new("Parsing error: #{msg}")
-        end
+        raise Eiwa::Error.new("Parsing error: #{msg}")
       end
 
       # def cdata_block string
