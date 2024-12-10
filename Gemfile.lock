@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eiwa (0.1.2)
+    eiwa (0.2.0)
       nokogiri (= 1.17.0)
 
 GEM
