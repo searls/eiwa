@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Parses the JMDict Japanese-English dictionary"
   spec.homepage = "https://github.com/searls/eiwa"
   spec.license = "MIT"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.files = Dir.chdir(File.expand_path("..", __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|tmp)/}) }
@@ -19,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "nokogiri", "1.17.0"
+  spec.add_dependency "nokogiri", ">= 1.19.4", "< 2"
 end

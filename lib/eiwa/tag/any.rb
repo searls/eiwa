@@ -10,7 +10,7 @@ module Eiwa
       end
 
       def add_characters(s)
-        @characters ||= ""
+        @characters ||= +""
         @characters << s.chomp
       end
 
